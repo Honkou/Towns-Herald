@@ -8,7 +8,7 @@ from handle_messages import Listeners
 
 
 def get_token() -> str:
-    """Find and return proper authorization token."""
+    """Find and return proper Discord authorization token."""
     load_dotenv()
     token = os.getenv("DISCORD_TOKEN")
     if not token:
