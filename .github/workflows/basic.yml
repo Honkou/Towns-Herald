@@ -4,19 +4,17 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # Triggers the workflow on push to main and pull request to dev.
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "dev" ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  # This workflow contains currently a single job called "linters"
+  linters:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -25,20 +23,21 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
+      # Install dependencies needed for the other actions
       - name: Install dependencies
-        run: |
-          python -m pip install -r tests/requirements.txt
-          echo test, and deploy your project.
+        run: python -m pip install -r tests/requirements.txt
 
-      - name: Run linters
-        run: flake8
+      - name: Run Black
+        run: black ./source ./tests --check
 
-      - name: autopep8
-  # You may pin to the exact commit or the version.
-  # uses: peter-evans/autopep8@2209b8c47cf1eec7550c1b4fb7108c0305656723
-        uses: peter-evans/autopep8@v2.0.0
+      - name: Run isort
+        run: isort ./source ./tests --check
+
+      - name: Check requirements order
+        run: sort-requirements ./tests/requirements.txt --check
+
+      - name: Run flake8
+        run: flake8 ./source ./tests
+
+      - name: Run MyPy
+        run: mypy ./source ./tests
