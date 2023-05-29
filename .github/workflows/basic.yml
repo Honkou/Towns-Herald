@@ -4,7 +4,7 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push to main and pull to request to dev.
+  # Triggers the workflow on push to main and pull request to dev.
   push:
     branches: [ "main" ]
   pull_request:
@@ -13,8 +13,8 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  # This workflow contains currently a single job called "linters"
+  linters:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -27,5 +27,5 @@ jobs:
       - name: Install dependencies
         run: python -m pip install -r tests/requirements.txt
 
-      - name: Run linters
+      - name: Run flake8
         run: flake8 ./source ./tests
