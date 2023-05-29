@@ -33,7 +33,7 @@ jobs:
       - name: Run isort
         run: isort ./source ./tests --check
 
-      - name: Sort requirements
+      - name: Check requirements order
         run: sort-requirements ./tests/requirements.txt --check
 
       - name: Run flake8
