@@ -23,12 +23,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a set of commands using the runners shell
+      # Install dependencies needed for the other actions
       - name: Install dependencies
         run: python -m pip install -r tests/requirements.txt
 
       - name: Run Black
         run: black ./source ./tests --check
+
+      - name: Run isort
+        run: isort ./source ./tests --check
 
       - name: Run flake8
         run: flake8 ./source ./tests
