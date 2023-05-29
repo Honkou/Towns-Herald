@@ -35,3 +35,6 @@ jobs:
 
       - name: Run flake8
         run: flake8 ./source ./tests
+
+      - name: Run MyPy
+        run: mypy ./source ./tests
