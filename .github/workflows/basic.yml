@@ -34,7 +34,7 @@ jobs:
         run: isort ./source ./tests --check
 
       - name: Sort requirements
-        run: sort-requirements ./tests/requirements.txt
+        run: sort-requirements ./tests/requirements.txt --check
 
       - name: Run flake8
         run: flake8 ./source ./tests
