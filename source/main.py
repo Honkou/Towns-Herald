@@ -9,15 +9,15 @@ from handle_messages import Listeners
 
 def get_token() -> str:
     """Find and return proper Discord authorization token."""
-    load_dotenv()
     token = os.getenv("DISCORD_TOKEN")
     if not token:
-        raise NameError("Not able to get credentials")
+        raise KeyError("Not able to find Discord credentials")
     return token
 
 
 def run_service() -> None:
     """Prepare and run main bot thread."""
+    load_dotenv()
     discord_token = get_token()
 
     intents = discord.Intents.default()
