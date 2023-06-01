@@ -10,6 +10,6 @@ def set_environment_variable():
 
     After the test is finished (pass or fail), delete the variable.
     """
-    os.environ["DISCORD_TOKEN"] = "Test_string"
+    os.environ["DISCORD_TOKEN"] = "Test_token"
     yield
     os.environ.pop("DISCORD_TOKEN")
