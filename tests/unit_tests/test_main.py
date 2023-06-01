@@ -27,6 +27,6 @@ def test_run_service(mocker, set_environment_variable) -> None:
     parsed with set_environment_variable fixture.
     """
     mocker.patch("main.load_dotenv")
-    fake_bot = mocker.patch("main.commands.Bot.run")
+    stubbed_bot = mocker.patch("main.commands.Bot.run")
     run_service()
-    fake_bot.assert_called_once_with("Test_token")
+    stubbed_bot.assert_called_once_with("Test_token")
