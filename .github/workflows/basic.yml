@@ -13,8 +13,10 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains currently a single job called "linters"
+  # This workflow contains currently two jobs: linters and unit tests.
+
   linters:
+    name: Linting and static analysis
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -41,3 +43,21 @@ jobs:
 
       - name: Run MyPy
         run: mypy ./source ./tests
+
+
+  unit_tests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    needs: linters
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Install dependencies needed for the other actions
+      - name: Install dependencies
+        run: python -m pip install -r tests/requirements.txt
+
+      - name: Run pytest
+        run: pytest ./tests/unit_tests

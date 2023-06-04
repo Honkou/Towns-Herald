@@ -6,8 +6,10 @@ black==23.3.0
 charset-normalizer==3.0.1
 click==8.1.3
 colorama==0.4.6
+coverage==7.2.7
 discord==2.1.0
-discord.py==2.1.1
+discord.py==2.2.3
+dpytest==0.6.6
 exceptiongroup==1.1.0
 flake8==6.0.0
 flake8-annotations==3.0.1
@@ -31,6 +33,8 @@ pycodestyle==2.10.0
 pydocstyle==6.3.0
 pyflakes==3.0.1
 pytest==7.2.1
+pytest-mock==3.10.0
+pytest_asyncio==0.21.0
 python-dotenv==1.0.0
 snowballstemmer==2.2.0
 sort-requirements==1.3.0

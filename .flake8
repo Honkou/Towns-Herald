@@ -1,3 +1,4 @@
 [flake8]
-extend-ignore = D107, ANN101
+extend-ignore = D107, ANN101, D205, D400
+per-file-ignores = tests/*: ANN001, ANN201
 exclude = .git,__pycache__,.\venv,.gitignore,.\vscode
