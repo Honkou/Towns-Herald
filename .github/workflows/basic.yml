@@ -27,7 +27,7 @@ jobs:
 
       # Install dependencies needed for the other actions
       - name: Install dependencies
-        run: python -m pip install -r tests/requirements.txt
+        run: python -m pip install -r tests/test_requirements.txt
 
       - name: Run Black
         run: black ./source ./tests --check
@@ -36,7 +36,7 @@ jobs:
         run: isort ./source ./tests --check
 
       - name: Check requirements order
-        run: sort-requirements ./tests/requirements.txt --check
+        run: sort-requirements ./tests/test_requirements.txt --check
 
       - name: Run flake8
         run: flake8 ./source ./tests
@@ -57,7 +57,7 @@ jobs:
 
       # Install dependencies needed for the other actions
       - name: Install dependencies
-        run: python -m pip install -r tests/requirements.txt
+        run: python -m pip install -r tests/test_requirements.txt
 
       - name: Run pytest
         run: pytest ./tests/unit_tests
