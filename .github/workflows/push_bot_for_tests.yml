@@ -1,0 +1,28 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Dev_deployment
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push to dev.
+  push:
+    branches: [ "dev" ]
+  pull_request:
+    branches: [ "dev" ]
+
+
+jobs:
+  # This workflow contains one job: triggering the script on the server to get the new docker image.
+
+  ssh-trigger:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Run_ssh
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{secrets.FILIP_SERVER_IP}}
+          username: ${{secrets.FILIP_SERVER_LOGIN}}
+          password: ${{secrets.FILIP_SERVER_PASSWORD}}
+          script: whoami
