@@ -25,4 +25,6 @@ jobs:
           host: ${{secrets.FILIP_SERVER_IP}}
           username: ${{secrets.FILIP_SERVER_LOGIN}}
           password: ${{secrets.FILIP_SERVER_PASSWORD}}
-          script: whoami
+          script: |
+            cd ${{secrets.FILIP_DEV_TRIGGER_SCRIPT_PATH}}
+            ./deploy_test_server.sh
