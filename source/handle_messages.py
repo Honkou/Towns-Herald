@@ -16,8 +16,11 @@ class Listeners(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message: discord.message.Message) -> None:
         """Listen to messages sent to chat."""
-        if message.author == self.bot.user:
+        if message.author.bot:
             return
 
         if message.content.startswith("Marco"):
             await message.channel.send("Polo!")
+
+        if message.content == "Polo!":
+            await message.channel.send("Cockta!")
