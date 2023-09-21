@@ -11,7 +11,8 @@ def get_token() -> str:
     """Find and return proper Discord authorization token."""
     token = os.getenv("DISCORD_TOKEN")
     if not token:
-        raise KeyError("Not able to find Discord credentials")
+        msg = "Not able to find Discord credentials"
+        raise KeyError(msg)
     return token
 
 
