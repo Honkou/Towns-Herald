@@ -6,3 +6,21 @@ exclude = [
 pythonpath = [
     "source",
 ]
+
+[tool.ruff]
+include = [     # What directories are to be checked
+    "source/*.py",
+    "tests/*.py",
+    "**/pyproject.toml",
+]
+select = [
+    "ALL"   # Use all possible rules
+]
+ignore = [
+    "ANN101",   # "Missing type annotation for 'self' in method"
+    "D203",     # "Required one blank line before class docstrings (incompatible with D211)"
+    "D213",     # "Required initial triple quotes to be on separate line for multiline docstrings."
+]
+fixable = ["ALL"]
+line-length = 88
+format = "grouped"
