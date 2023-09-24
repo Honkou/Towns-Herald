@@ -11,6 +11,7 @@ class Listeners(commands.Cog):
     """Class for regular messages."""
 
     def __init__(self, bot: commands.Bot) -> None:
+        """Initialize the Listeners class."""
         self.bot = bot
 
     @commands.Cog.listener()

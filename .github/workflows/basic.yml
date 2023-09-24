@@ -36,13 +36,13 @@ jobs:
         run: isort ./source ./tests --check
 
       - name: Check requirements order
-        run: sort-requirements ./tests/test_requirements.txt --check
+        run: sort-requirements ./tests/test_requirements.txt requirements.txt --check
 
-      - name: Run flake8
-        run: flake8 ./source ./tests
+      - name: Run Ruff
+        run: ruff .
 
       - name: Run MyPy
-        run: mypy ./source ./tests
+        run: mypy ./source
 
 
   unit_tests:
