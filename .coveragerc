@@ -1,0 +1,17 @@
+[run]
+command_line = -m pytest tests/unit_tests
+
+[report]
+; Regexes for lines to exclude from consideration
+exclude_also =
+    ; Don't complain about abstract methods, they aren't run:
+    @(abc\.)?abstractmethod
+
+fail_under = 90
+skip_empty = True
+
+[html]
+directory = reports/html_report
+
+[lcov]
+output = reports/lcov.info
