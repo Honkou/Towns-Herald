@@ -5,10 +5,17 @@ exclude = [
     "tests/*"
     ]
 
+
 [tool.pytest.ini_options]
 pythonpath = [
     "source",
 ]
+
+
+[tool.black]
+line-length = 105
+target-version = ['py38', 'py39', 'py310', 'py311']
+
 
 [tool.ruff]
 include = [     # What directories are to be checked
@@ -26,7 +33,7 @@ ignore = [
     "S105",     # "Possible hardcoded password assigned" (too many false positives)
 ]
 fixable = ["ALL"]
-line-length = 88
+line-length = 105
 format = "grouped"
 
 [tool.ruff.per-file-ignores]
