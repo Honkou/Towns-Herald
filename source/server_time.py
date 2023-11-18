@@ -1,6 +1,6 @@
 """Utility module responsible for processing requests related to time."""
 
-from datetime import datetime
+from datetime import datetime, tzinfo
 from enum import IntEnum
 
 
@@ -22,3 +22,16 @@ def get_time_of_day(date: datetime) -> TimesOfDay:
         if hour >= day_part.value:
             last_matching_day_part = day_part
     return last_matching_day_part
+
+
+def get_servers_local_timezone() -> tzinfo:
+    """Return information of the server's timezone, on which the bot is hosted."""
+    return datetime.now().astimezone().tzinfo
+
+
+def utc_to_local_time(date: datetime, tz: tzinfo) -> datetime:
+    """Convert a UTC time to match a timezone.
+
+    This is needed in order to operate on the bot's local time, instead of the universal one.
+    """
+    return date.astimezone(tz=tz)
