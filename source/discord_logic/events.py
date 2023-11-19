@@ -26,4 +26,4 @@ class Listeners(commands.Cog):
             await message.channel.send("Polo!")
 
         if message.content == "Polo!":
-            await message.channel.send("Cockta!")
+            await message.channel.send("!hello")
