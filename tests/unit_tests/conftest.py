@@ -6,7 +6,7 @@ import discord.ext.test as dpytest
 import pytest
 import pytest_asyncio
 from discord.ext import commands
-from handle_messages import Listeners
+from discord_logic.events import Listeners
 
 
 @pytest.fixture()

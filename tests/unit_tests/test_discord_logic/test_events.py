@@ -1,4 +1,4 @@
-"""File for testing handle_messages.py."""
+"""File for testing discord_logic.events.py."""
 import discord.ext.test as dpytest
 import pytest
 
