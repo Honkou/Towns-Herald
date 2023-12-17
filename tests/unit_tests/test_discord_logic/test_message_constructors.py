@@ -1,4 +1,6 @@
 """Test constructors creating expected response based on received context."""
+from enum import Enum
+
 import pytest
 from discord_logic.message_constructors import (
     _get_time_based_greeting,
@@ -68,3 +70,14 @@ class TestTimeBasedGreeting:
         """Assert that the function returns expected greeting based on the time input."""
         greeting = _get_time_based_greeting(time)
         assert greeting == expected_response
+
+    def test_return_dummy_value_when_no_matching_case(self):
+        """Assert the function returns a dummy value when the given enum doesn't match any case."""
+
+        class FakeEnum(Enum):
+            MISSING = "This value won't be found in the function's body"
+
+        fake_enum = FakeEnum.MISSING
+
+        missing_greeting = _get_time_based_greeting(fake_enum)
+        assert missing_greeting == "Cześć"

@@ -20,6 +20,7 @@ def _get_time_based_greeting(time: TimesOfDay) -> str:
             return "Dobry wieczór"
         case "NIGHT":
             return "*zieeew* No cześć"
+    return "Cześć"
 
 
 def create_hello_response_based_on_time(user: str | None = None, time: TimesOfDay | None = None) -> str:
