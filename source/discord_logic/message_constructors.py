@@ -23,11 +23,14 @@ def _get_time_based_greeting(time: TimesOfDay) -> str:
     return "Cześć"
 
 
-def create_hello_response_based_on_time(user: str | None = None, time: TimesOfDay | None = None) -> str:
-    """Return a greeting to the user depending on server's local time."""
+def create_hello_response_based_on_time(
+    user_id: int | None = None,
+    time: TimesOfDay | None = None,
+) -> str:
+    """Return a greeting to the user_id depending on server's local time."""
     response = _get_time_based_greeting(time) if time else "Cześć"
-    if user:
-        response += f", {user}"
+    if user_id:
+        response += f", <@{user_id}>"
 
     sentence_ending = "!"
     if time and time.name == "NIGHT":

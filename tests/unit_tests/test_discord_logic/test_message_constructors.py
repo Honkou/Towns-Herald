@@ -24,7 +24,7 @@ class TestHelloBasedOnTime:
     def test_addresses_user(self, user):
         """Assert the function mentions the user in response."""
         response = create_hello_response_based_on_time(user)
-        assert response == f"Cześć, {user}!"
+        assert response == f"Cześć, <@{user}>!"
 
     def test_skips_user_if_not_provided(self):
         """Assert the function skips the user if they were not mentioned."""
@@ -38,7 +38,7 @@ class TestHelloBasedOnTime:
 
     def test_mentions_the_time_in_response(self):
         """Assert the response contains time corresponding to the passed enum."""
-        response = create_hello_response_based_on_time(user=None, time=TimesOfDay.EVENING)
+        response = create_hello_response_based_on_time(user_id=None, time=TimesOfDay.EVENING)
         assert response == "Dobry wieczór!"
 
     def test_mentions_both_user_and_time(self):
@@ -46,7 +46,7 @@ class TestHelloBasedOnTime:
         name = "KochamMinecraft2137"
         time = TimesOfDay.NIGHT
         response = create_hello_response_based_on_time(name, time)
-        assert response == f"*zieeew* No cześć, {name}."
+        assert response == f"*zieeew* No cześć, <@{name}>."
 
 
 class TestTimeBasedGreeting:

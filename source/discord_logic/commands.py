@@ -25,8 +25,8 @@ class Commands(commands.Cog):
         "Dobry wieczór, honkou!" - sent in the evening if prompted by honkou
         "*zieeew* No cześć, Shiro." - sent in the night if prompted by Shiro
         """
-        author = context.message.author.display_name
+        author_id = context.message.author.id
         part_of_the_day = server_time.get_servers_time_of_day()
 
-        response = create_hello_response_based_on_time(author, part_of_the_day)
+        response = create_hello_response_based_on_time(author_id, part_of_the_day)
         await context.channel.send(response)
