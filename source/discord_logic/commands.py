@@ -2,7 +2,6 @@
 
 Each class needs to be then imported to main.py as a cog.
 """
-import discord
 from discord.ext import commands
 
 
@@ -17,6 +16,6 @@ class Commands(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def hello(self, message: discord.message.Message) -> None:
+    async def hello(self, context: commands.Context) -> None:
         """Respond with greeting appropriate to bot's timezone."""
-        await message.channel.send("Siema Eniu")
+        await context.channel.send("Siema Eniu")

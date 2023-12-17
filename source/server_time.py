@@ -26,7 +26,11 @@ def get_time_of_day(date: datetime) -> TimesOfDay:
 
 def get_servers_local_timezone() -> tzinfo:
     """Return information of the server's timezone, on which the bot is hosted."""
-    return datetime.now().astimezone().tzinfo
+    local_timezone = datetime.now().astimezone().tzinfo
+    if not local_timezone:
+        msg = "Expected timezone object, but no timezone was returned!"
+        raise ValueError(msg)
+    return local_timezone
 
 
 def utc_to_local_time(date: datetime, tz: tzinfo) -> datetime:
