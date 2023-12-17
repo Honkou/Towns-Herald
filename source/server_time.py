@@ -37,12 +37,18 @@ def utc_to_local_time(date: datetime, tz: tzinfo) -> datetime:
     """Convert a UTC time to match a timezone.
 
     This is needed in order to operate on the bot's local time, instead of the universal one.
+
+    Also, this is very much a convenience function, as normal datetime module can do the same, though
+    in a convoluted and not very intuitive manner.
     """
     return date.astimezone(tz=tz)
 
 
 def get_servers_time_of_day() -> TimesOfDay:
-    """Return the time of day based on server's local time."""
+    """Return the time of day based on server's local time.
+
+    This is a convenience function that couples other functions from this module into one simple output.
+    """
     local_tz = _get_servers_local_timezone()
     local_time = datetime.now(local_tz)
     return _get_time_of_day(local_time)

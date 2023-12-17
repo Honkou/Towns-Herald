@@ -2,9 +2,9 @@
 
 Each class needs to be then imported to main.py as a cog.
 """
+import server_time
 from discord.ext import commands
 from discord_logic.message_constructors import create_hello_response_based_on_time
-from server_time import get_servers_time_of_day
 
 
 class Commands(commands.Cog):
@@ -19,8 +19,14 @@ class Commands(commands.Cog):
 
     @commands.command()
     async def hello(self, context: commands.Context) -> None:
-        """Respond with greeting appropriate to bot's timezone."""
+        """Respond with greeting appropriate to the bot's timezone.
+
+        Example responses:
+        "Dobry wieczór, honkou!" - sent in the evening if prompted by honkou
+        "*zieeew* No cześć, Shiro." - sent in the night if prompted by Shiro
+        """
         author = context.message.author.display_name
-        part_of_the_day = get_servers_time_of_day()
+        part_of_the_day = server_time.get_servers_time_of_day()
+
         response = create_hello_response_based_on_time(author, part_of_the_day)
         await context.channel.send(response)
