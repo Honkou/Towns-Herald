@@ -9,6 +9,7 @@ exclude_also =
 
 fail_under = 90
 skip_empty = True
+skip_covered = True
 
 [html]
 directory = reports/html_report
