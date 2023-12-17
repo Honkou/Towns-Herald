@@ -1,6 +1,5 @@
-"""Module that handles user messages.
+"""Module that handles Discord events.
 
-Should contain separate classes for regular messages and commands.
 Each class needs to be then imported to main.py as a cog.
 """
 import discord
@@ -8,7 +7,10 @@ from discord.ext import commands
 
 
 class Listeners(commands.Cog):
-    """Class for regular messages."""
+    """Class for regular messages.
+
+    Should contain separate methods for each event the bot is supposed to react to.
+    """
 
     def __init__(self, bot: commands.Bot) -> None:
         """Initialize the Listeners class."""
@@ -16,7 +18,7 @@ class Listeners(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.message.Message) -> None:
-        """Listen to messages sent to chat."""
+        """Listen and react to regular messages sent to chat."""
         if message.author.bot:
             return
 
@@ -24,4 +26,4 @@ class Listeners(commands.Cog):
             await message.channel.send("Polo!")
 
         if message.content == "Polo!":
-            await message.channel.send("Cockta!")
+            await message.channel.send("!hello")

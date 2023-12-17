@@ -1,5 +1,6 @@
 [project]
 requires-python = ">=3.10"
+name = "Towns Herald"
 
 [tool.mypy]
 ignore_missing_imports = true
@@ -23,6 +24,8 @@ line-length = 105
 line_length = 105
 multi_line_output = 3
 include_trailing_comma = true
+
+
 
 
 [tool.ruff]

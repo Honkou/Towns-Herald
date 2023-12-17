@@ -3,8 +3,9 @@ import os
 
 import discord
 from discord.ext import commands
+from discord_logic.commands import Commands
+from discord_logic.events import Listeners
 from dotenv import load_dotenv
-from handle_messages import Listeners
 
 
 def get_token() -> str:
@@ -33,6 +34,7 @@ def run_service() -> None:
         https://discordpy.readthedocs.io/en/stable/ext/commands/cogs.html#quick-example
         """
         await bot.add_cog(Listeners(bot))
+        await bot.add_cog(Commands(bot))
 
     bot.run(discord_token)
 

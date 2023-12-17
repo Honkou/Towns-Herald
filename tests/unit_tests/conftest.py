@@ -6,7 +6,8 @@ import discord.ext.test as dpytest
 import pytest
 import pytest_asyncio
 from discord.ext import commands
-from handle_messages import Listeners
+from discord_logic.commands import Commands
+from discord_logic.events import Listeners
 
 
 @pytest.fixture()
@@ -31,6 +32,7 @@ async def fake_bot() -> commands.Bot:
     bot = commands.Bot(command_prefix="!", intents=intents)
     await bot._async_setup_hook()  # noqa: SLF001 (ignore accessing private method)
     await bot.add_cog(Listeners(bot))
+    await bot.add_cog(Commands(bot))
     dpytest.configure(bot)
 
     yield bot
