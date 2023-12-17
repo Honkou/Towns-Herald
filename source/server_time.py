@@ -13,7 +13,7 @@ class TimesOfDay(IntEnum):
     NIGHT = 22
 
 
-def get_time_of_day(date: datetime) -> TimesOfDay:
+def _get_time_of_day(date: datetime) -> TimesOfDay:
     """Return the time of day that's matching the time in the provided date."""
     hour = date.hour
     last_matching_day_part = TimesOfDay.NIGHT
@@ -24,7 +24,7 @@ def get_time_of_day(date: datetime) -> TimesOfDay:
     return last_matching_day_part
 
 
-def get_servers_local_timezone() -> tzinfo:
+def _get_servers_local_timezone() -> tzinfo:
     """Return information of the server's timezone, on which the bot is hosted."""
     local_timezone = datetime.now().astimezone().tzinfo
     if not local_timezone:
@@ -39,3 +39,10 @@ def utc_to_local_time(date: datetime, tz: tzinfo) -> datetime:
     This is needed in order to operate on the bot's local time, instead of the universal one.
     """
     return date.astimezone(tz=tz)
+
+
+def get_servers_time_of_day() -> TimesOfDay:
+    """Return the time of day based on server's local time."""
+    local_tz = _get_servers_local_timezone()
+    local_time = datetime.now(local_tz)
+    return _get_time_of_day(local_time)

@@ -4,7 +4,7 @@ from datetime import datetime, tzinfo
 
 import pytest
 from pytz import timezone, utc
-from server_time import TimesOfDay, get_servers_local_timezone, get_time_of_day, utc_to_local_time
+from server_time import TimesOfDay, _get_servers_local_timezone, _get_time_of_day, utc_to_local_time
 
 
 @pytest.mark.parametrize(
@@ -21,12 +21,12 @@ from server_time import TimesOfDay, get_servers_local_timezone, get_time_of_day,
 def test_get_time_of_day(test_hour: int, expected_time_of_day: TimesOfDay):
     """Assert that get_time_of_day returns expected Enum."""
     testing_time = datetime(year=2023, month=6, day=8, hour=test_hour, tzinfo=utc)
-    assert get_time_of_day(testing_time) == expected_time_of_day
+    assert _get_time_of_day(testing_time) == expected_time_of_day
 
 
 def test_get_servers_local_timezone():
     """Assert that the function returns expected object type."""
-    server_timezone = get_servers_local_timezone()
+    server_timezone = _get_servers_local_timezone()
     assert isinstance(server_timezone, tzinfo)
 
 
